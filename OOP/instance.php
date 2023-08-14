@@ -13,8 +13,8 @@ class Product{
     private $product = [];
 
     // 関数
-    function __construct($product){ // 初めに実行される
-        $this->product = $product;
+    public function __construct($product){ // 初めに実行される
+       $this->product = $product;
     }
 
     public function getProduct(){
