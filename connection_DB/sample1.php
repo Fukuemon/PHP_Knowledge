@@ -1,3 +1,4 @@
+<!-- DBとの接続 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
