@@ -1,15 +1,7 @@
 {
-    "name": "fuku079/composertest",
-    "autoload": {
-        "psr-4": {
-            "Fuku079\\Composertest\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Fukuemon",
-            "email": "Fukuemony029@gmail.com"
-        }
-    ],
-    "require": {}
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
 }
