@@ -1,6 +1,7 @@
 <?php
+require_once("dbconnect.php");
+
 $memo = filter_input(INPUT_POST, "memo", FILTER_SANITIZE_SPECIAL_CHARS); //filter_input：入力値をフィルタリングする関数
-$db = new mysqli("localhost:8889", "root", "root", "mydb");
 $stmt = $db->prepare("insert into memos(memo) values(?)");
 if (!$stmt):
     die($db->error);

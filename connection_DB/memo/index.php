@@ -1,5 +1,6 @@
 <?php
-$db = new mysqli("localhost:8889", "root", "root", "mydb");
+require_once("dbconnect.php");
+
 $memos = $db->query("select * from memos order by id desc"); //order by：並び替え
 if (!$memos) {
     di($db->error);
