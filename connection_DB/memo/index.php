@@ -17,7 +17,7 @@ if (!$memos) {
     <h1>メモ帳</h1>
     <?php while ($memo = $memos->fetch_assoc()): ?>
     <div>
-        <h2><a href="#"><?php echo htmlspecialchars($memo["memo"]);?></a></h2>
+        <h2><a href="#"><?php echo htmlspecialchars(md_substr($memo["memo"], 0, 50));?></a></h2>
         <time><?php echo htmlspecialchars($memo["created"])?></time>
     </div>
     <hr>
