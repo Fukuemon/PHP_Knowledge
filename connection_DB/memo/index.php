@@ -1,6 +1,12 @@
 <?php
 require_once("dbconnect.php");
 
+// 最大ページ数を求める
+$counts = $db->query("select count(*) from memos");
+$count = $counts->fetch_assoc();
+$max_page = floor(($count["cnt"]+1)/5+1);
+echo $max_page;                                                                                                                                                                                                                                                                                                                                                                                                       
+
 $stmt = $db->prepare("select * from memos order by id desc limit ?, 5"); //order by：並び替え
 if (!$stmt):
     die($db->error);    
@@ -33,5 +39,15 @@ $result = $stmt->execute();
     </div>
     <hr>
     <?php endwhile; ?>
+    <p>
+        <!--  ページ番号が1より大きい場合 -->
+        <?php if ($page > 1): ?>
+    <a href="?page=<?php echo $page-1;?>"><?php echo $page-1; ?>ページ目へ</a>
+        <?php endif; ?>
+        <?php if ($page < $max_page): ?> //ページ番号が5より小さい場合
+    <a href="?page=<?php echo $page+1;?>"><?php echo $page+1; ?>ページ目へ</a>
+        <?php endif; ?>
+    
+    </p>
 </body>
 </html>
