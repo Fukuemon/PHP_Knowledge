@@ -3,7 +3,7 @@ require_once("dbconnect.php");
 
 $memos = $db->query("select * from memos order by id desc"); //order by：並び替え
 if (!$memos) {
-    di($db->error);
+    die($db->error);
 }
 ?>
 <!DOCTYPE html>
@@ -15,10 +15,12 @@ if (!$memos) {
 </head>
 <body>
     <h1>メモ帳</h1>
+
+    <p>-> <a href='input.php'>新しいメモ</a></p>
     <?php while ($memo = $memos->fetch_assoc()): ?>
     <div>
-        <h2><a href="#"><?php echo htmlspecialchars(md_substr($memo["memo"], 0, 50));?></a></h2>
-        <time><?php echo htmlspecialchars($memo["created"])?></time>
+        <h2><a href="memo.php?id=<?php echo $memo["id"]; ?>"><?php echo htmlspecialchars(mb_substr($memo["memo"], 0, 50));?></a></h2>
+        <time><?php echo htmlspecialchars($memo["created"]);?></time>
     </div>
     <hr>
     <?php endwhile; ?>

@@ -11,6 +11,7 @@ $ret = $stmt->execute();
 
 if ($ret):
     echo "メッセージを保存しました";
+    echo "<br>-> <a href='index.php'>トップへ戻る</a>";
 else:
     echo "メッセージの保存に失敗しました";
 endif;
