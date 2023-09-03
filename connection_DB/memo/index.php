@@ -5,9 +5,11 @@ $stmt = $db->prepare("select * from memos order by id desc limit ?, 5"); //order
 if (!$stmt):
     die($db->error);    
 endif;
-$page = 5;
-$stmt->bind_param("i", $page); 
-$stmt->execute();
+$page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
+$page = ($page ?: 1); //ページ番号がない場合は1を代入
+$start = ($page - 1) * 5;
+$stmt->bind_param("i", $start); 
+$result = $stmt->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +22,9 @@ $stmt->execute();
     <h1>メモ帳</h1>
 
     <p>-> <a href='input.php'>新しいメモ</a></p>
+    <?php if (!$result): ?>
+    <p>表示するメモがありません</p>
+    <?php endif; ?>
     <?php $stmt->bind_result($id, $memo, $created); ?>
     <?php while ($stmt->fetch()): ?>
     <div>
