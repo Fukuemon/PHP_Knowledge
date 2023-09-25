@@ -11,4 +11,7 @@ if ($success):
     echo "<br>-> <a href='index.php'>トップへ戻る</a>";
 else:
     echo "メモの内容の変更に失敗しました";
+    echo "<br>-> <a href='index.php'>トップへ戻る</a>";
 endif;
+?>
+```
